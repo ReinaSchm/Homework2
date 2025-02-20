@@ -161,8 +161,9 @@ from scrapy.http import Request
 from scrapy.linkextractors import LinkExtractor
 import random
 import scrapy
-import pandas as pd</code></pre>
-<p>The first few libraries will help us crawl through the sites themselves and navigate from one page to the next to extract all the actors we are looking for. The last library is used to create a pandas dataframe which we’ll see at the end.</p>
+import pandas as pd
+imported plotly.express as px</code></pre>
+<p>The first few libraries will help us crawl through the sites themselves and navigate from one page to the next to extract all the actors we are looking for. The second to last library is used to create a pandas dataframe which we’ll see at the end.The very last library is used to create our visualizations we’ll visit at the end as well.</p>
 </section>
 <section id="parse-through-the-website" class="level2">
 <h2 class="anchored" data-anchor-id="parse-through-the-website">Parse through the website</h2>
@@ -216,8 +217,8 @@ import pandas as pd</code></pre>
 </section>
 </section>
 </section>
-<section id="now-that-we-have-found-our-results-we-can-create-out-visual-table-using-a-pandas-dataframe" class="level2">
-<h2 class="anchored" data-anchor-id="now-that-we-have-found-our-results-we-can-create-out-visual-table-using-a-pandas-dataframe">Now that we have found our results, we can create out visual table using a pandas dataframe</h2>
+<section id="now-that-we-have-found-our-results-we-can-create-out-visualizations-and-tables-using-a-pandas-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="now-that-we-have-found-our-results-we-can-create-out-visualizations-and-tables-using-a-pandas-dataframe">Now that we have found our results, we can create out visualizations and tables using a pandas dataframe</h2>
 <p><strong>Let’s compare two movies</strong> Sarah Burnett chose her favorite film as Harry Potter and the Philosopher’s Stone while Reina Schmoock Chose Interstellar. We want to compare our favorite films to see what movies/TV shows the actors are casted in are shared between the two sets of actors.</p>
 <section id="here-are-the-two-csv-files-of-sarahs-favorite-film-and-reinas-favorite-film" class="level3">
 <h3 class="anchored" data-anchor-id="here-are-the-two-csv-files-of-sarahs-favorite-film-and-reinas-favorite-film">Here are the two csv files of Sarah’s favorite film and Reina’s favorite film</h3>
@@ -225,8 +226,39 @@ import pandas as pd</code></pre>
 my_results = pd.read_csv("my_results.csv")</code></pre>
 <p><strong>First, we have the dataframe of actors from Harry Potter and their other roles</strong></p>
 <p><img src="HP.png" class="img-fluid"></p>
+<p><em>And then we can use the dataframe with plotly express to create a historgram comparing the actors from Harry Potter and the number of other roles they appear in</em></p>
+<pre><code>actors = results['Actor']
+
+HP = px.histogram(actors, x = 'Actor', nbins = 5, title = 'Harry Potter', 
+                  labels = {'Title':'Number of Roles', 'Actor': 'Actors'})
+HP.update_layout(
+    xaxis_title="Actor",
+    yaxis_title="Number of Titles",
+    title_x=0.5)
+
+HP.show()
+</code></pre>
+</section>
+<section id="this-creates-the-following-histogram" class="level3">
+<h3 class="anchored" data-anchor-id="this-creates-the-following-histogram"><em>This creates the following histogram</em></h3>
+<p><img src="HP_graph.png" class="img-fluid"></p>
 <p><strong>Next, we have the dataframe of actors from Interstellar and their other roles</strong></p>
 <p><img src="Interstellar.png" class="img-fluid"></p>
+<p><em>And then we can use the dataframe with plotly express to create a historgram comparing the actors from Harry Potter and the number of other roles they appear in</em></p>
+<pre><code>actors = my_results['Actor']
+
+INT = px.histogram(actors, x = 'Actor', nbins = 5, title = 'Interstellar', 
+                  labels = {'Title':'Number of Roles', 'Actor': 'Actors'})
+INT.update_layout(
+    xaxis_title="Actor",
+    yaxis_title="Number of Titles",
+    title_x=0.5)
+
+INT.show()</code></pre>
+</section>
+<section id="this-creates-the-following-histogram-1" class="level3">
+<h3 class="anchored" data-anchor-id="this-creates-the-following-histogram-1"><em>This creates the following histogram</em></h3>
+<p><img src="INT_graph.png" class="img-fluid"></p>
 </section>
 <section id="to-compare-the-titles-of-moviestv-shows-that-appear-in-both-dataframes-we-merge-the-two-dataframes-together-to-create-one-new-dataframe-called-share_title" class="level3">
 <h3 class="anchored" data-anchor-id="to-compare-the-titles-of-moviestv-shows-that-appear-in-both-dataframes-we-merge-the-two-dataframes-together-to-create-one-new-dataframe-called-share_title">To compare the titles of movies/TV shows that appear in both dataframes, we merge the two dataframes together to create one new dataframe called share_title!</h3>
@@ -235,12 +267,16 @@ share_title = pd.merge(results, my_results, on = "movie_or_TV_name")
 share_title.columns = pd.Index(['HP', 'Title', 'Actor'])
 share_title = share_title[['Title', 'Actor']]
 share_title</code></pre>
-<p><strong>Let’s look at how this table looks below:</strong></p>
+<p><strong>Let’s look at how this looks below:</strong></p>
 <p><img src="all.png" class="img-fluid"></p>
+<p><em>And then we can use the dataframe with plotly express to create a historgram comparing the actors from Harry Potter and the number of other roles they appear in</em></p>
+<p>```actors = share_title[‘Actor’]</p>
+<p>shared = px.histogram(actors, x = ‘Actor’, nbins = 5, title = ‘Shared Titles’, labels = {‘Title’:‘Number of Roles’, ‘Actor’: ‘Actors’}) shared.update_layout( xaxis_title=“Actor”, yaxis_title=“Number of Titles”, title_x=0.5)</p>
+<p>shared.show() ```</p>
 </section>
-<section id="because-theres-so-many-rows-between-so-many-actors-lets-look-at-the-first-20-results" class="level3">
-<h3 class="anchored" data-anchor-id="because-theres-so-many-rows-between-so-many-actors-lets-look-at-the-first-20-results">Because there’s so many rows between so many actors, let’s look at the first 20 results:</h3>
-<p><img src="20.png" class="img-fluid"></p>
+<section id="this-creates-the-following-histogram-2" class="level3">
+<h3 class="anchored" data-anchor-id="this-creates-the-following-histogram-2"><em>This creates the following histogram</em></h3>
+<p><img src="shared_graph.png" class="img-fluid"></p>
 
 
 </section>
