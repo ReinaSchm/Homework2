@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Reina Schmoock">
+<meta name="dcterms.date" content="2025-02-19">
 
-<title>Homework2</title>
+<title>Web Scraping to compare movies and actors – Homework2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +32,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -68,73 +68,15 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -170,118 +112,141 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Homework2</h1>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(2)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Web Scraping to compare movies and actors</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">hw2</div>
+  </div>
+  </div>
 
 
 
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Reina Schmoock </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 19, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
+</header>
 
 
+<section id="import-libraries" class="level2">
+<h2 class="anchored" data-anchor-id="import-libraries">Import libraries</h2>
+<p>To compare the actors starred in our favorite movies, we must first scrape the TMDB website to collect information on the corresponding movies’ actors. To begin scraping, we must first import all libraries we’ll be using.</p>
+<pre><code>from scrapy.spiders import Spider
+from scrapy.http import Request
+from scrapy.linkextractors import LinkExtractor
+import random
+import scrapy
+import pandas as pd</code></pre>
+<p>The first few libraries will help us crawl through the sites themselves and navigate from one page to the next to extract all the actors we are looking for. The last library is used to create a pandas dataframe which we’ll see at the end.</p>
+</section>
+<section id="parse-through-the-website" class="level2">
+<h2 class="anchored" data-anchor-id="parse-through-the-website">Parse through the website</h2>
+<p>The code below provides the url for where we start scraping. Using the f strings allows us to implement <code>{subdir}</code> as a parameter when we initialize our scraper.</p>
+<pre><code>class TmdbSpider(scrapy.Spider):
+    name = 'tmdb_spider'
+
+    def __init__(self, subdir="", *args, **kwargs):
+        self.start_urls = [f"https://www.themoviedb.org/movie/{subdir}/"] 
+
+</code></pre>
+<section id="three-parsing-methods" class="level3">
+<h3 class="anchored" data-anchor-id="three-parsing-methods">Three parsing methods:</h3>
+<section id="method-1" class="level4">
+<h4 class="anchored" data-anchor-id="method-1"><em>Method 1:</em></h4>
+<p><strong>Starting at the movie page, we’ll navigate to the Full Cast &amp; Crew page by hardcoding the cast page of the movie</strong> Through the yield Request, we’re calling the next parsing method to navigate through the actual list of actors.</p>
+<pre><code>    def parse(self, response):
+        cast_url = response.url + '/cast' 
+        yield scrapy.Request(cast_url, callback=self.parse_full_credits)</code></pre>
+</section>
+<section id="method-2" class="level4">
+<h4 class="anchored" data-anchor-id="method-2"><em>Method 2:</em></h4>
+<p><strong>Then we’ll use the following method to join each actor in a list and navigate to their pages</strong> We first use <code>respose.css()</code> in combination with the <code>.getall()</code> method to sift through the column of actors themselves in the cast column and ignore the crew column. The for loop will then navigate and join the individual actor’s links so that that the yield request can call the next parsing method after crawling through these actors’ links.</p>
+<pre><code>    def parse_full_credits(self, response):
+        cast_links = response.css('ol.people.credits li a::attr(href)').getall()
+        
+        for actor in cast_links:
+            cast_url = response.urljoin(actor) 
+            yield scrapy.Request(url = cast_url, callback = self.parse_actor_page)</code></pre>
+</section>
+<section id="method-3" class="level4">
+<h4 class="anchored" data-anchor-id="method-3"><em>Method 3:</em></h4>
+<p><strong>Now starting at an actor’s page from the list, we can navigate the actor’s name</strong> As before, we use <code>response.css()</code> with the <code>.get()</code> method this time to find all the actor’s names, and now we can look each indivdual’s roles they’ve been casted for. Here we want to create an empty set because we started with a list of the actor’s names, but we want to prevent any of their roles being listed more than once. Because set’s can only contain one element once, this prevents any duplicates. Then we can proceed to adding the name of each movie/TV show the actors were casted in from the list of roles into the set.</p>
+<pre><code>    def parse_actor_page(self, response):
+       
+        actor_name = response.css('h2.title a::text').get()
+        roles = response.css('td.role')
+
+        cleaned_roles = set()
+
+        for role in roles:
+            movie_or_TV_name = role.css('a.tooltip bdi::text').get() 
+            
+            if movie_or_TV_name not in cleaned_roles:
+                yield{
+                "actor" : actor_name, 
+                "movie_or_TV_name" : movie_or_TV_name
+                }
+
+</code></pre>
+</section>
+</section>
+</section>
+<section id="now-that-we-have-found-our-results-we-can-create-out-visual-table-using-a-pandas-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="now-that-we-have-found-our-results-we-can-create-out-visual-table-using-a-pandas-dataframe">Now that we have found our results, we can create out visual table using a pandas dataframe</h2>
+<p><strong>Let’s compare two movies</strong> Sarah Burnett chose her favorite film as Harry Potter and the Philosopher’s Stone while Reina Schmoock Chose Interstellar. We want to compare our favorite films to see what movies/TV shows the actors are casted in are shared between the two sets of actors.</p>
+<section id="here-are-the-two-csv-files-of-sarahs-favorite-film-and-reinas-favorite-film" class="level3">
+<h3 class="anchored" data-anchor-id="here-are-the-two-csv-files-of-sarahs-favorite-film-and-reinas-favorite-film">Here are the two csv files of Sarah’s favorite film and Reina’s favorite film</h3>
+<pre><code>results = pd.read_csv("results.csv")
+my_results = pd.read_csv("my_results.csv")</code></pre>
+<p><strong>First, we have the dataframe of actors from Harry Potter and their other roles</strong></p>
+<p><img src="HP.png" class="img-fluid"></p>
+<p><strong>Next, we have the dataframe of actors from Interstellar and their other roles</strong></p>
+<p><img src="Interstellar.png" class="img-fluid"></p>
+</section>
+<section id="to-compare-the-titles-of-moviestv-shows-that-appear-in-both-dataframes-we-merge-the-two-dataframes-together-to-create-one-new-dataframe-called-share_title" class="level3">
+<h3 class="anchored" data-anchor-id="to-compare-the-titles-of-moviestv-shows-that-appear-in-both-dataframes-we-merge-the-two-dataframes-together-to-create-one-new-dataframe-called-share_title">To compare the titles of movies/TV shows that appear in both dataframes, we merge the two dataframes together to create one new dataframe called share_title!</h3>
+<pre><code># These are titles that are shared between actors of HP and Interstellar
+share_title = pd.merge(results, my_results, on = "movie_or_TV_name")
+share_title.columns = pd.Index(['HP', 'Title', 'Actor'])
+share_title = share_title[['Title', 'Actor']]
+share_title</code></pre>
+<p><strong>Let’s look at how this table looks below:</strong></p>
+<p><img src="all.png" class="img-fluid"></p>
+</section>
+<section id="because-theres-so-many-rows-between-so-many-actors-lets-look-at-the-first-20-results" class="level3">
+<h3 class="anchored" data-anchor-id="because-theres-so-many-rows-between-so-many-actors-lets-look-at-the-first-20-results">Because there’s so many rows between so many actors, let’s look at the first 20 results:</h3>
+<p><img src="20.png" class="img-fluid"></p>
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="bmV3cyUyQ2NvZGUlMkNhbmFseXNpcw==" data-listing-date-sort="1739952000000" data-listing-file-modified-sort="1740015092595" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="7">
-<div class="thumbnail">
-<p><a href="./posts/post-with-code/index.html" class="no-external"></a></p><a href="./posts/post-with-code/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/post-with-code/image.jpg" class="thumbnail-image"></p>
-</a><p><a href="./posts/post-with-code/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/post-with-code/index.html" class="no-external">Post With Code</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/post-with-code/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">
-news
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">
-code
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('YW5hbHlzaXM='); return false;">
-analysis
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/post-with-code/index.html" class="no-external">This is a post with executable code.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/post-with-code/index.html" class="no-external">
-<div class="listing-date">
-Feb 19, 2025
-</div>
-<div class="listing-author">
-Harlow Malloc
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="bmV3cw==" data-listing-date-sort="1739692800000" data-listing-file-modified-sort="1740015092588" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="32">
-<div class="thumbnail">
-<p><a href="./posts/welcome/index.html" class="no-external"></a></p><a href="./posts/welcome/index.html" class="no-external">
-<p class="card-img-top"><img src="posts\welcome\thumbnail.jpg"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/welcome/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/welcome/index.html" class="no-external">Welcome To My Blog</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/welcome/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">
-news
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/welcome/index.html" class="no-external">This is the first post in a Quarto blog. Welcome!</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/welcome/index.html" class="no-external">
-<div class="listing-date">
-Feb 16, 2025
-</div>
-<div class="listing-author">
-Tristan O’Malley
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</section>
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -372,7 +337,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/ReinaSchm\.github\.io\/Homework2\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
