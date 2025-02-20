@@ -241,7 +241,7 @@ HP.show()
 </section>
 <section id="this-creates-the-following-histogram" class="level3">
 <h3 class="anchored" data-anchor-id="this-creates-the-following-histogram"><em>This creates the following histogram</em></h3>
-<p><img src="HP_graph.png" class="img-fluid"></p>
+<p><img src="first.png" class="img-fluid"></p>
 <p><strong>Next, we have the dataframe of actors from Interstellar and their other roles</strong></p>
 <p><img src="Interstellar.png" class="img-fluid"></p>
 <p><em>And then we can use the dataframe with plotly express to create a historgram comparing the actors from Harry Potter and the number of other roles they appear in</em></p>
@@ -258,7 +258,7 @@ INT.show()</code></pre>
 </section>
 <section id="this-creates-the-following-histogram-1" class="level3">
 <h3 class="anchored" data-anchor-id="this-creates-the-following-histogram-1"><em>This creates the following histogram</em></h3>
-<p><img src="INT_graph.png" class="img-fluid"></p>
+<p><img src="secoond.png" class="img-fluid"></p>
 </section>
 <section id="to-compare-the-titles-of-moviestv-shows-that-appear-in-both-dataframes-we-merge-the-two-dataframes-together-to-create-one-new-dataframe-called-share_title" class="level3">
 <h3 class="anchored" data-anchor-id="to-compare-the-titles-of-moviestv-shows-that-appear-in-both-dataframes-we-merge-the-two-dataframes-together-to-create-one-new-dataframe-called-share_title">To compare the titles of movies/TV shows that appear in both dataframes, we merge the two dataframes together to create one new dataframe called share_title!</h3>
@@ -270,13 +270,20 @@ share_title</code></pre>
 <p><strong>Let’s look at how this looks below:</strong></p>
 <p><img src="all.png" class="img-fluid"></p>
 <p><em>And then we can use the dataframe with plotly express to create a historgram comparing the actors from Harry Potter and the number of other roles they appear in</em></p>
-<p>```actors = share_title[‘Actor’]</p>
-<p>shared = px.histogram(actors, x = ‘Actor’, nbins = 5, title = ‘Shared Titles’, labels = {‘Title’:‘Number of Roles’, ‘Actor’: ‘Actors’}) shared.update_layout( xaxis_title=“Actor”, yaxis_title=“Number of Titles”, title_x=0.5)</p>
-<p>shared.show() ```</p>
+<pre><code>actors = share_title['Actor']
+
+shared = px.histogram(actors, x = 'Actor', nbins = 5, title = 'Shared Titles', 
+                  labels = {'Title':'Number of Roles', 'Actor': 'Actors'})
+shared.update_layout(
+    xaxis_title="Actor",
+    yaxis_title="Number of Titles",
+    title_x=0.5)
+
+shared.show()</code></pre>
 </section>
 <section id="this-creates-the-following-histogram-2" class="level3">
 <h3 class="anchored" data-anchor-id="this-creates-the-following-histogram-2"><em>This creates the following histogram</em></h3>
-<p><img src="shared_graph.png" class="img-fluid"></p>
+<p><img src="third.png" class="img-fluid"></p>
 
 
 </section>
